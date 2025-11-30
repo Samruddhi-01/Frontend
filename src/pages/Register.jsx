@@ -43,17 +43,17 @@ export default function Register() {
 
   return (
     <div className="h-screen flex items-center justify-center bg-gradient-to-br from-purple-600 via-indigo-600 to-pink-500 animate-gradient">
-      <div className="glass neo-surface p-10 rounded-2xl w-11/12 sm:w-96">
-        <h2 className="text-4xl font-bold text-white text-center mb-6">Register</h2>
+      <div className="glass neo-surface p-10 rounded-2xl w-11/12 sm:w-96 text-gray-900 dark:text-white">
+        <h2 className="text-4xl font-bold text-gray-900 dark:text-white text-center mb-6">Register</h2>
         {msg && (
-          <p className={`text-center mb-4 font-semibold ${success ? "text-purple-200" : "text-white"}`}>
+          <p className={`text-center mb-4 font-semibold ${success ? "text-green-700 dark:text-purple-200" : "text-gray-900 dark:text-white"}`}>
             {msg}
           </p>
         )}
 
         <form className="flex flex-col gap-4" onSubmit={handleRegister}>
           <div className="flex items-center rounded-lg">
-            <FaUser className="text-white mr-3" />
+            <FaUser className="text-gray-700 dark:text-white mr-3" />
             <input
               type="text"
               name="username"
@@ -66,7 +66,7 @@ export default function Register() {
           </div>
 
           <div className="flex items-center rounded-lg">
-            <FaLock className="text-white mr-3" />
+            <FaLock className="text-gray-700 dark:text-white mr-3" />
             <input
               type="password"
               name="password"
@@ -87,7 +87,7 @@ export default function Register() {
           </button>
         </form>
 
-        <p className="text-white mt-4 text-center">
+        <p className="text-gray-900 dark:text-white mt-4 text-center">
           Already have an account? <Link to="/login" className="underline">Login here</Link>
         </p>
       </div>

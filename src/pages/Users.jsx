@@ -68,13 +68,13 @@ export default function Users() {
       {/* Search + Add */}
       <div className="flex flex-col md:flex-row items-center justify-between gap-4">
         <div className="flex items-center glass rounded-xl px-4 py-2 w-full md:w-1/2">
-          <FaSearch className="text-gray-400 mr-2" />
+          <FaSearch className="text-gray-500 dark:text-gray-400 mr-2" />
           <input
             type="text"
             placeholder="Search users..."
             value={search}
             onChange={(e) => setSearch(e.target.value)}
-            className="w-full bg-transparent focus:outline-none text-white placeholder-white/70"
+            className="w-full bg-transparent focus:outline-none text-gray-900 placeholder-gray-600 dark:text-white dark:placeholder-white/70"
           />
         </div>
 
@@ -90,7 +90,7 @@ export default function Users() {
       <div className="overflow-x-auto mt-6 glass neo-surface rounded-2xl">
         <table className="min-w-full rounded-2xl">
           <thead>
-            <tr className="border-b border-white/20 text-white/90">
+            <tr className="border-b border-gray-300 dark:border-white/20 text-gray-900 dark:text-white/90">
               <th className="px-6 py-3 text-left">ID</th>
               <th className="px-6 py-3 text-left">Name</th>
               <th className="px-6 py-3 text-left">Email</th>
@@ -101,7 +101,7 @@ export default function Users() {
           <tbody>
             {filteredUsers.length > 0 ? (
               filteredUsers.map((user) => (
-                <tr key={user.id} className="border-b border-white/10 hover:bg-white/10 text-white/90">
+                <tr key={user.id} className="border-b border-gray-200 dark:border-white/10 hover:bg-gray-50 dark:hover:bg-white/10 text-gray-900 dark:text-white/90">
                   <td className="px-6 py-4">{user.id}</td>
                   <td className="px-6 py-4">{user.name}</td>
                   <td className="px-6 py-4">{user.email}</td>
@@ -109,21 +109,21 @@ export default function Users() {
                   <td className="px-6 py-4 flex gap-3">
                     <button
                       onClick={() => openUserModal(user.id)}
-                      className="text-blue-200 hover:text-blue-100"
+                      className="text-blue-600 hover:text-blue-700 dark:text-blue-200 dark:hover:text-blue-100"
                     >
                       <FaUser size={20} />
                     </button>
 
                     <button
                       onClick={() => navigate(`/edit-user/${user.id}`)}
-                      className="text-green-200 hover:text-green-100"
+                      className="text-green-600 hover:text-green-700 dark:text-green-200 dark:hover:text-green-100"
                     >
                       <FaPen size={20} />
                     </button>
 
                     <button
                       onClick={() => deleteUser(user.id)}
-                      className="text-red-300 hover:text-red-200"
+                      className="text-red-600 hover:text-red-700 dark:text-red-300 dark:hover:text-red-200"
                     >
                       <FaTrashAlt size={20} />
                     </button>
@@ -132,7 +132,7 @@ export default function Users() {
               ))
             ) : (
               <tr>
-                <td colSpan="4" className="text-center py-4 text-white/70">
+                <td colSpan="4" className="text-center py-4 text-gray-600 dark:text-white/70">
                   No users found
                 </td>
               </tr>

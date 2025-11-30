@@ -51,19 +51,19 @@ export default function Login({ setAuth }) {
 
   return (
     <div className="h-screen w-full flex items-center justify-center bg-gradient-to-br from-purple-600 via-indigo-600 to-pink-500 animate-gradient">
-      <div className="glass neo-surface p-10 rounded-2xl w-11/12 sm:w-96">
+      <div className="glass neo-surface p-10 rounded-2xl w-11/12 sm:w-96 text-gray-900 dark:text-white">
 
-        <h2 className="text-4xl font-bold text-white text-center mb-6">
+        <h2 className="text-4xl font-bold text-gray-900 dark:text-white text-center mb-6">
           Admin Login
         </h2>
 
         {msg && (
-          <p className="text-center mb-4 text-white font-semibold">{msg}</p>
+          <p className="text-center mb-4 text-gray-900 dark:text-white font-semibold">{msg}</p>
         )}
 
         <form onSubmit={handleSubmit} className="flex flex-col gap-4">
           <div className="flex items-center rounded-lg">
-            <FaUser className="text-white mr-3" />
+            <FaUser className="text-gray-700 dark:text-white mr-3" />
             <input
               type="text"
               placeholder="Username"
@@ -77,7 +77,7 @@ export default function Login({ setAuth }) {
           </div>
 
           <div className="flex items-center rounded-lg">
-            <FaLock className="text-white mr-3" />
+            <FaLock className="text-gray-700 dark:text-white mr-3" />
             <input
               type="password"
               placeholder="Password"
@@ -99,7 +99,7 @@ export default function Login({ setAuth }) {
           </button>
         </form>
 
-        <p className="text-white mt-4 text-center">
+        <p className="text-gray-900 dark:text-white mt-4 text-center">
           Don't have an account?{" "}
           <Link to="/register" className="underline">
             Register here

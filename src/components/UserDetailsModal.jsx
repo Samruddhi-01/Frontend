@@ -14,7 +14,7 @@ export default function UserDetailsModal({ open, onClose, user, loading }) {
       />
 
       {/* Modal */}
-      <div className="relative glass neo-surface rounded-2xl p-6 w-11/12 max-w-md text-white">
+      <div className="relative glass neo-surface rounded-2xl p-6 w-11/12 max-w-md text-gray-900 dark:text-white">
         <div className="flex items-center justify-between mb-4">
           <h3 className="text-2xl font-bold">User Details</h3>
           <button
@@ -26,17 +26,17 @@ export default function UserDetailsModal({ open, onClose, user, loading }) {
         </div>
 
         {loading ? (
-          <p className="text-white/80">Loading...</p>
+          <p className="text-gray-700 dark:text-white/80">Loading...</p>
         ) : user ? (
-          <div className="space-y-2 text-white/90">
+          <div className="space-y-2 text-gray-900 dark:text-white/90">
             <p>
-              <strong className="text-white">ID:</strong> {user.id}
+              <strong className="text-gray-900 dark:text-white">ID:</strong> {user.id}
             </p>
             <p>
-              <strong className="text-white">Name:</strong> {user.name}
+              <strong className="text-gray-900 dark:text-white">Name:</strong> {user.name}
             </p>
             <p>
-              <strong className="text-white">Email:</strong> {user.email}
+              <strong className="text-gray-900 dark:text-white">Email:</strong> {user.email}
             </p>
           </div>
         ) : (

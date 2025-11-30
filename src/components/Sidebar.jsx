@@ -16,7 +16,7 @@ export default function Sidebar({ isCollapsed, setIsCollapsed }) {
     <aside
       className={`${
         isCollapsed ? "w-20" : "w-64"
-      } glass neo-surface text-white transition-all duration-300 flex flex-col min-h-screen overflow-y-auto flex-shrink-0`}
+      } glass neo-surface text-gray-900 dark:text-white transition-all duration-300 flex flex-col min-h-screen overflow-y-auto flex-shrink-0`}
     >
       {/* Sidebar header */}
       <div className="flex items-center justify-between p-6 glass-header rounded-b-xl">
@@ -40,7 +40,9 @@ export default function Sidebar({ isCollapsed, setIsCollapsed }) {
             key={item.name}
             to={item.path}
             className={`flex items-center gap-3 px-6 py-3 font-bold text-xl rounded-lg transition-colors duration-200
-              ${location.pathname === item.path ? "bg-blue-600 text-white" : "text-white hover:bg-blue-500/60"}
+              ${location.pathname === item.path
+                ? "bg-blue-600 text-white"
+                : "text-gray-900 dark:text-white hover:bg-blue-100 dark:hover:bg-blue-500/60"}
             `}
           >
             {item.icon} {!isCollapsed && item.name}

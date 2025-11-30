@@ -31,7 +31,7 @@ export default function EditUser() {
 
   return (
     <main className="p-6">
-      <h2 className="text-xl font-bold text-white text-center">Edit User</h2>
+      <h2 className="text-xl font-bold text-gray-900 dark:text-white text-center">Edit User</h2>
       <form
         onSubmit={handleSubmit}
         className="glass neo-surface rounded-2xl p-6 flex flex-col gap-4 mt-4 max-w-md w-full mx-auto"

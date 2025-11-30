@@ -23,7 +23,7 @@ export default function AddUser() {
 
   return (
     <main className="p-6 flex flex-col gap-6">
-      <h2 className="text-xl font-bold text-white">Add New User</h2>
+      <h2 className="text-xl font-bold text-gray-900 dark:text-white">Add New User</h2>
       <form
         onSubmit={handleSubmit}
         className="glass neo-surface rounded-2xl p-6 flex flex-col gap-4"
