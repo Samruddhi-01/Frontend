@@ -14,7 +14,7 @@ export default function Layout() {
   }, [isDark]);
 
   return (
-    <div className="flex min-h-screen bg-gray-100 dark:bg-gray-900 dark:text-white transition-colors duration-300">
+    <div className="flex min-h-screen bg-gray-100 text-black dark:bg-gray-900 dark:text-white transition-colors duration-300">
       <Sidebar isCollapsed={isCollapsed} setIsCollapsed={setIsCollapsed} />
       <div className="flex-1 flex flex-col overflow-auto">
         <Navbar isDark={isDark} setIsDark={setIsDark} />

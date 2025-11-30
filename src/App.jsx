@@ -32,7 +32,7 @@ export default function App() {
   }, [isDark]);
 
   return (
-    <div className="flex min-h-screen bg-gray-100 dark:bg-gray-900 dark:text-white transition-colors duration-300">
+    <div className="flex min-h-screen bg-gray-100 text-black dark:bg-gray-900 dark:text-white transition-colors duration-300">
       {!hideLayout && (
         <Sidebar isCollapsed={isCollapsed} setIsCollapsed={setIsCollapsed} />
       )}
