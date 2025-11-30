@@ -1,5 +1,5 @@
 import { useState, useEffect } from "react";
-import { Routes, Route, useLocation } from "react-router-dom";
+import { Routes, Route, useLocation, Navigate } from "react-router-dom";
 import Sidebar from "./components/Sidebar";
 import Navbar from "./components/Navbar";
 import Home from "./pages/Home";
@@ -23,8 +23,7 @@ export default function App() {
   });
 
   const location = useLocation();
-  const hideLayout =
-    location.pathname === "/login" || location.pathname === "/register";
+  const hideLayout = location.pathname === "/login" || location.pathname === "/register";
 
   // DARK MODE
   useEffect(() => {
@@ -33,19 +32,26 @@ export default function App() {
   }, [isDark]);
 
   return (
-    <div className="flex h-screen bg-gray-100 dark:bg-gray-900 dark:text-white transition-colors duration-300">
-
+    <div className="flex min-h-screen bg-gray-100 dark:bg-gray-900 dark:text-white transition-colors duration-300">
       {!hideLayout && (
         <Sidebar isCollapsed={isCollapsed} setIsCollapsed={setIsCollapsed} />
       )}
 
-      <div className="flex-1 flex flex-col">
-        {!hideLayout && <Navbar isDark={isDark} setIsDark={setIsDark} />}
+      <div className="flex-1 flex flex-col overflow-auto">
+        {!hideLayout && <Navbar isDark={isDark} setIsDark={setIsDark} setAuth={setAuth} />}
 
         <Routes>
           {/* PUBLIC */}
-          <Route path="/login" element={<Login setAuth={setAuth} />} />
-          <Route path="/register" element={<Register />} />
+          <Route
+            path="/login"
+            element={
+              auth.isLoggedIn ? <Navigate to="/" replace /> : <Login setAuth={setAuth} />
+            }
+          />
+          <Route
+            path="/register"
+            element={auth.isLoggedIn ? <Navigate to="/" replace /> : <Register />}
+          />
 
           {/* PROTECTED ROUTES */}
           <Route
@@ -56,7 +62,6 @@ export default function App() {
               </ProtectedRoute>
             }
           />
-
           <Route
             path="/users"
             element={
@@ -65,7 +70,6 @@ export default function App() {
               </ProtectedRoute>
             }
           />
-
           <Route
             path="/add-user"
             element={
@@ -74,7 +78,6 @@ export default function App() {
               </ProtectedRoute>
             }
           />
-
           <Route
             path="/view-user/:id"
             element={
@@ -83,12 +86,20 @@ export default function App() {
               </ProtectedRoute>
             }
           />
-
           <Route
             path="/edit-user/:id"
             element={
               <ProtectedRoute auth={auth}>
                 <EditUser />
+              </ProtectedRoute>
+            }
+          />
+          {/* CATCH-ALL -> HOME (protected) */}
+          <Route
+            path="*"
+            element={
+              <ProtectedRoute auth={auth}>
+                <Navigate to="/" replace />
               </ProtectedRoute>
             }
           />

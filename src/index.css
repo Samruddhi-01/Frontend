@@ -12,3 +12,43 @@
   background-size: 200% 200%;
   animation: gradientMove 8s ease infinite;
 }
+
+/* Glass UI utilities */
+.glass {
+  @apply bg-white/15 dark:bg-white/10 backdrop-blur-xl border border-white/20 shadow-xl;
+}
+.glass-input {
+  @apply bg-white/10 dark:bg-white/10 backdrop-blur-md border border-white/30 rounded-lg px-4 py-3 text-white placeholder-white/70 focus:outline-none focus:ring-2 focus:ring-white/40;
+}
+.glass-header {
+  @apply bg-white/20 dark:bg-white/10 backdrop-blur-xl border-b border-white/20;
+}
+
+/* Neo (neumorphism) utilities */
+.neo-surface {
+  background: linear-gradient(145deg, rgba(255,255,255,0.55), rgba(255,255,255,0.35));
+  box-shadow: 12px 12px 24px rgba(0,0,0,0.15), -12px -12px 24px rgba(255,255,255,0.25);
+  border-radius: 16px;
+}
+.neo-inset {
+  box-shadow: inset 8px 8px 16px rgba(0,0,0,0.15), inset -8px -8px 16px rgba(255,255,255,0.25);
+}
+.neo-btn {
+  @apply rounded-xl font-semibold transition;
+  background: linear-gradient(145deg, #f0f0f0, #d9d9d9);
+  box-shadow: 6px 6px 12px rgba(0,0,0,0.15), -6px -6px 12px rgba(255,255,255,0.6);
+}
+.neo-btn:active {
+  box-shadow: inset 6px 6px 12px rgba(0,0,0,0.15), inset -6px -6px 12px rgba(255,255,255,0.6);
+}
+
+/* Dark adjustments */
+:root.dark .neo-surface {
+  background: linear-gradient(145deg, rgba(25,25,35,0.8), rgba(20,20,28,0.7));
+  box-shadow: 12px 12px 24px rgba(0,0,0,0.6), -12px -12px 24px rgba(255,255,255,0.04);
+}
+:root.dark .neo-btn {
+  background: linear-gradient(145deg, #1f2937, #111827);
+  box-shadow: 6px 6px 12px rgba(0,0,0,0.6), -6px -6px 12px rgba(255,255,255,0.05);
+  color: #e5e7eb;
+}

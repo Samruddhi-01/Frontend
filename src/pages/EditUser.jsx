@@ -1,4 +1,5 @@
 import React, { useEffect, useState } from "react";
+import Swal from "sweetalert2";
 import { useParams, useNavigate } from "react-router-dom";
 
 export default function EditUser() {
@@ -22,36 +23,36 @@ export default function EditUser() {
     })
       .then((res) => res.json())
       .then(() => {
-        alert("User updated successfully!");
+        Swal.fire({ title: "User updated!", icon: "success", timer: 1200, showConfirmButton: false });
         navigate("/users"); // go back to list
       })
-      .catch((err) => console.error("Error updating user:", err));
+      .catch(() => Swal.fire({ title: "Update failed", icon: "error" }));
   };
 
   return (
     <main className="p-6">
-      <h2 className="text-xl font-bold">Edit User</h2>
+      <h2 className="text-xl font-bold text-white text-center">Edit User</h2>
       <form
         onSubmit={handleSubmit}
-        className="bg-white dark:bg-gray-800 shadow-md rounded-lg p-6 flex flex-col gap-4 mt-4"
+        className="glass neo-surface rounded-2xl p-6 flex flex-col gap-4 mt-4 max-w-md w-full mx-auto"
       >
         <input
           type="text"
           value={formData.name}
           onChange={(e) => setFormData({ ...formData, name: e.target.value })}
-          className="border rounded px-3 py-2"
+          className="glass-input w-full"
           required
         />
         <input
           type="email"
           value={formData.email}
           onChange={(e) => setFormData({ ...formData, email: e.target.value })}
-          className="border rounded px-3 py-2"
+          className="glass-input w-full"
           required
         />
         <button
           type="submit"
-          className="bg-green-600 hover:bg-green-700 text-white px-4 py-2 rounded"
+          className="neo-btn px-4 py-2 w-full"
         >
           Save Changes
         </button>

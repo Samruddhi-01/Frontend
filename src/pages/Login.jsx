@@ -2,6 +2,7 @@ import React, { useState } from "react";
 import axios from "axios";
 import { useNavigate, Link } from "react-router-dom";
 import { FaUser, FaLock } from "react-icons/fa";
+import Swal from "sweetalert2";
 
 export default function Login({ setAuth }) {
   const navigate = useNavigate();
@@ -16,40 +17,41 @@ export default function Login({ setAuth }) {
 
     try {
       const res = await axios.post(
-        "http://localhost:8080/api/v1/admin/login",
+        "http://localhost:8080/api/auth/login",
         form
       );
 
-      const data = res.data;
-
-      if (data?.auth) {
-        localStorage.setItem("admin", JSON.stringify({ username: data.username }));
+      if (res.status === 200) {
+        localStorage.setItem("admin", JSON.stringify({ username: form.username }));
         localStorage.setItem("auth", "true");
 
         setAuth({
           isLoggedIn: true,
-          admin: { username: data.username },
+          admin: { username: form.username },
         });
 
         setMsg("Login Successful!");
         setSuccess(true);
-
+        Swal.fire({ title: "Logged in!", icon: "success", timer: 1000, showConfirmButton: false });
         setTimeout(() => navigate("/"), 800);
       } else {
         setMsg("Invalid Credentials");
         setSuccess(false);
+        Swal.fire({ title: "Invalid credentials", icon: "error" });
       }
     } catch (err) {
-      setMsg(err.response?.data?.message || "Server Error");
+      const message = err.response?.data?.message || "Server Error";
+      setMsg(message);
       setSuccess(false);
+      Swal.fire({ title: message, icon: "error" });
     } finally {
       setLoading(false);
     }
   };
 
   return (
-    <div className="h-screen w-full flex items-center justify-center bg-gradient-to-br from-purple-600 via-indigo-600 to-pink-500">
-      <div className="backdrop-blur-xl p-10 rounded-2xl shadow-2xl w-11/12 sm:w-96 border border-white/30 bg-white/20">
+    <div className="h-screen w-full flex items-center justify-center bg-gradient-to-br from-purple-600 via-indigo-600 to-pink-500 animate-gradient">
+      <div className="glass neo-surface p-10 rounded-2xl w-11/12 sm:w-96">
 
         <h2 className="text-4xl font-bold text-white text-center mb-6">
           Admin Login
@@ -60,12 +62,12 @@ export default function Login({ setAuth }) {
         )}
 
         <form onSubmit={handleSubmit} className="flex flex-col gap-4">
-          <div className="flex items-center bg-white/20 rounded-lg px-4 py-3 border border-white/40">
+          <div className="flex items-center rounded-lg">
             <FaUser className="text-white mr-3" />
             <input
               type="text"
               placeholder="Username"
-              className="bg-transparent text-white w-full"
+              className="glass-input w-full"
               value={form.username}
               onChange={(e) =>
                 setForm({ ...form, username: e.target.value })
@@ -74,12 +76,12 @@ export default function Login({ setAuth }) {
             />
           </div>
 
-          <div className="flex items-center bg-white/20 rounded-lg px-4 py-3 border border-white/40">
+          <div className="flex items-center rounded-lg">
             <FaLock className="text-white mr-3" />
             <input
               type="password"
               placeholder="Password"
-              className="bg-transparent text-white w-full"
+              className="glass-input w-full"
               value={form.password}
               onChange={(e) =>
                 setForm({ ...form, password: e.target.value })
@@ -91,7 +93,7 @@ export default function Login({ setAuth }) {
           <button
             type="submit"
             disabled={loading}
-            className="mt-3 bg-white text-purple-700 font-semibold py-2 rounded-lg"
+            className="mt-3 w-full py-2 rounded-lg bg-blue-600 hover:bg-blue-700 text-white font-semibold shadow-lg disabled:opacity-60 disabled:cursor-not-allowed"
           >
             {loading ? "Logging in..." : "Login"}
           </button>

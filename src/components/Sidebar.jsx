@@ -16,10 +16,10 @@ export default function Sidebar({ isCollapsed, setIsCollapsed }) {
     <aside
       className={`${
         isCollapsed ? "w-20" : "w-64"
-      } bg-blue-900 text-white shadow-lg transition-all duration-300 flex flex-col`}
+      } glass neo-surface text-white transition-all duration-300 flex flex-col min-h-screen overflow-y-auto flex-shrink-0`}
     >
       {/* Sidebar header */}
-      <div className="flex items-center justify-between p-6 border-b border-blue-700">
+      <div className="flex items-center justify-between p-6 glass-header rounded-b-xl">
         {!isCollapsed && (
           <h2 className="text-3xl font-bold flex items-center gap-3">
             MyPanel
@@ -27,7 +27,7 @@ export default function Sidebar({ isCollapsed, setIsCollapsed }) {
         )}
         <button
           onClick={() => setIsCollapsed(!isCollapsed)}
-          className="text-2xl bg-blue-800 px-3 py-1 rounded hover:bg-blue-700 transition"
+          className="text-2xl px-3 py-1 rounded-lg bg-blue-600 hover:bg-blue-700 text-white shadow-lg"
         >
           <FiAlignJustify />
         </button>
@@ -39,8 +39,8 @@ export default function Sidebar({ isCollapsed, setIsCollapsed }) {
           <Link
             key={item.name}
             to={item.path}
-            className={`flex items-center gap-3 px-6 py-3 font-bold text-xl rounded transition-colors duration-200
-              ${location.pathname === item.path ? "bg-white text-blue-900" : "hover:bg-white hover:text-blue-900"}
+            className={`flex items-center gap-3 px-6 py-3 font-bold text-xl rounded-lg transition-colors duration-200
+              ${location.pathname === item.path ? "bg-blue-600 text-white" : "text-white hover:bg-blue-500/60"}
             `}
           >
             {item.icon} {!isCollapsed && item.name}
@@ -50,4 +50,3 @@ export default function Sidebar({ isCollapsed, setIsCollapsed }) {
     </aside>
   );
 }
-

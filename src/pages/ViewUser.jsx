@@ -12,15 +12,15 @@ export default function ViewUser() {
       .catch((err) => console.error("Error fetching user:", err));
   }, [id]);
 
-  if (!user) return <p>Loading...</p>;
+  if (!user) return <p className="text-white/80 p-6">Loading...</p>;
 
   return (
     <main className="p-6">
-      <h2 className="text-xl font-bold">User Details</h2>
-      <div className="bg-white dark:bg-gray-800 shadow-md rounded-lg p-6 mt-4">
-        <p><strong>ID:</strong> {user.id}</p>
-        <p><strong>Name:</strong> {user.name}</p>
-        <p><strong>Email:</strong> {user.email}</p>
+      <h2 className="text-xl font-bold text-white">User Details</h2>
+      <div className="glass neo-surface rounded-2xl p-6 mt-4 text-white/90">
+        <p><strong className="text-white">ID:</strong> {user.id}</p>
+        <p><strong className="text-white">Name:</strong> {user.name}</p>
+        <p><strong className="text-white">Email:</strong> {user.email}</p>
       </div>
     </main>
   );

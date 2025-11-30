@@ -1,4 +1,5 @@
 import React, { useState } from "react";
+import Swal from "sweetalert2";
 
 export default function AddUser() {
   const [formData, setFormData] = useState({ name: "", email: "" });
@@ -14,25 +15,25 @@ export default function AddUser() {
       .then((res) => res.json())
       .then((createdUser) => {
         console.log("User created:", createdUser);
-        alert("User added successfully!");
+        Swal.fire({ title: "User added!", icon: "success", timer: 1200, showConfirmButton: false });
         setFormData({ name: "", email: "" });
       })
-      .catch((err) => console.error("Error creating user:", err));
+      .catch(() => Swal.fire({ title: "Create failed", icon: "error" }));
   };
 
   return (
     <main className="p-6 flex flex-col gap-6">
-      <h2 className="text-xl font-bold">Add New User</h2>
+      <h2 className="text-xl font-bold text-white">Add New User</h2>
       <form
         onSubmit={handleSubmit}
-        className="bg-white dark:bg-gray-800 shadow-md rounded-lg p-6 flex flex-col gap-4"
+        className="glass neo-surface rounded-2xl p-6 flex flex-col gap-4"
       >
         <input
           type="text"
           placeholder="Enter name"
           value={formData.name}
           onChange={(e) => setFormData({ ...formData, name: e.target.value })}
-          className="border rounded px-3 py-2"
+          className="glass-input"
           required
         />
         <input
@@ -40,12 +41,12 @@ export default function AddUser() {
           placeholder="Enter email"
           value={formData.email}
           onChange={(e) => setFormData({ ...formData, email: e.target.value })}
-          className="border rounded px-3 py-2"
+          className="glass-input"
           required
         />
         <button
           type="submit"
-          className="bg-green-600 hover:bg-green-700 text-white px-4 py-2 rounded"
+          className="px-4 py-2 rounded-lg bg-blue-600 hover:bg-blue-700 text-white font-semibold shadow-lg"
         >
           Submit
         </button>

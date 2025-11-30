@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import axios from "axios";
-import toast from "react-hot-toast";
+import Swal from "sweetalert2";
 import { useNavigate, Link } from "react-router-dom";
 import { FaUser, FaLock } from "react-icons/fa";
 
@@ -25,15 +25,15 @@ export default function Register() {
     setLoading(true);
 
     try {
-      await axios.post("http://localhost:8080/api/v1/admin/register", form);
+      await axios.post("http://localhost:8080/api/auth/register", form);
 
-      toast.success("Registered Successfully!");
+      Swal.fire({ title: "Registered!", icon: "success", timer: 1200, showConfirmButton: false });
       setSuccess(true);
       setMsg("Registration successful");
 
       setTimeout(() => navigate("/login"), 1200);
     } catch (err) {
-      toast.error("Registration Failed!");
+      Swal.fire({ title: "Registration failed", icon: "error" });
       setSuccess(false);
       setMsg("Registration failed");
     } finally {
@@ -43,10 +43,7 @@ export default function Register() {
 
   return (
     <div className="h-screen flex items-center justify-center bg-gradient-to-br from-purple-600 via-indigo-600 to-pink-500 animate-gradient">
-      <div
-        className={`backdrop-blur-xl p-10 rounded-2xl shadow-2xl w-11/12 sm:w-96 border border-white/30
-        ${success ? "bg-purple-600/40 border-purple-400" : "bg-white/20"}`}
-      >
+      <div className="glass neo-surface p-10 rounded-2xl w-11/12 sm:w-96">
         <h2 className="text-4xl font-bold text-white text-center mb-6">Register</h2>
         {msg && (
           <p className={`text-center mb-4 font-semibold ${success ? "text-purple-200" : "text-white"}`}>
@@ -55,7 +52,7 @@ export default function Register() {
         )}
 
         <form className="flex flex-col gap-4" onSubmit={handleRegister}>
-          <div className="flex items-center bg-white/20 rounded-lg px-4 py-3 border border-white/40">
+          <div className="flex items-center rounded-lg">
             <FaUser className="text-white mr-3" />
             <input
               type="text"
@@ -63,12 +60,12 @@ export default function Register() {
               placeholder="Username"
               value={form.username}
               onChange={handleChange}
-              className="bg-transparent focus:outline-none text-white placeholder-white/70 w-full"
+              className="glass-input w-full"
               required
             />
           </div>
 
-          <div className="flex items-center bg-white/20 rounded-lg px-4 py-3 border border-white/40">
+          <div className="flex items-center rounded-lg">
             <FaLock className="text-white mr-3" />
             <input
               type="password"
@@ -76,7 +73,7 @@ export default function Register() {
               placeholder="Password"
               value={form.password}
               onChange={handleChange}
-              className="bg-transparent focus:outline-none text-white placeholder-white/70 w-full"
+              className="glass-input w-full"
               required
             />
           </div>
@@ -84,10 +81,9 @@ export default function Register() {
           <button
             type="submit"
             disabled={loading}
-            className={`mt-3 font-semibold py-2 rounded-lg shadow-lg w-full transition disabled:opacity-60 disabled:cursor-not-allowed
-              ${success ? "bg-purple-700 hover:bg-purple-800 text-white" : "bg-white text-purple-700 hover:bg-purple-200"}`}
+            className={`mt-2 w-full py-2 rounded-lg bg-green-600 hover:bg-green-700 text-white font-semibold shadow-lg transition disabled:opacity-60 disabled:cursor-not-allowed`}
           >
-            {loading ? "Registering..." : "Register"}
+            {loading ? "Registering..." : "Create Account"}
           </button>
         </form>
 
